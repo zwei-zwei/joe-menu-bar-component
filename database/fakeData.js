@@ -54,7 +54,7 @@ let followersGenerator = function () {
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'milenita1809!',
+  password: '',
   database: 'users'
 });
 

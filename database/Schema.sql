@@ -1,4 +1,4 @@
-DROP DATABASE users;
+-- DROP DATABASE users;
 
 CREATE DATABASE users;
 
