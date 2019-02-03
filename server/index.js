@@ -22,9 +22,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 //   })
 // });
 
-app.get('/username', (req, res) => {
+app.get('/users', (req, res) => {
   UserDb.find({}, (err, data) => {
   })
+  .limit(100)
   .then((data) => {
     res.send(data);
   })
