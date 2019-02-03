@@ -4,9 +4,9 @@
   "description": "Recreating Twitch Profile Service",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js",
-    "seed-database": "node database/fakeData.js",
+    "react": "webpack -d --watch",
+    "start": "nodemon server/index.js",
+    "seed": "node database/fakeData.js",
     "test": "jest"
   },
   "author": "Joe Boulos",
