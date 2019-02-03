@@ -22,15 +22,3 @@
 // 	category VARCHAR (100) NOT NULL,
 // 	PRIMARY KEY (follower_id)
 // );
-
-const mongoose = require('mongoose');
-
-const userSchema = {
-	user_id: { type: Number, unique: true },
-	display_name: String,
-	logo: String,
-	profile_image_url: String,
-	category: String,
-	followers: Number,
-	Following: Number,
-}
