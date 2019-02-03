@@ -98,65 +98,90 @@
 // });
 
 
+// const faker = require('faker');
+// // const mysql = require('mysql');
+// const mongoose = require('mongoose');
+// const onlineDb = require('../config/keys');
+// mongoose.connect(onlineDb.mongoURI, { useNewUrlParser: true });
+
+// const db = mongoose.connection;
+// mongoose.Promise = global.Promise;
+
+
+// let userDataGenerator = function () {
+//   let userData = [];
+
+//   for (let i = 0; i < 100; i++) {
+//     let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{image.image}}, {{commerce.department}}, {{random.number}}, {{random.number}}");
+//     user.trim();
+//     userData.push(user.split(','));
+//   }
+
+//   let results = userData.map(arr => {
+//     let obj = {};
+//     for (let i = 0; i < arr.length; i++) {
+//       if (i === 0) obj['display_name'] = arr[0];
+//       if (i === 1) obj['logo'] = arr[1];
+//       if (i === 2) obj['profile_image'] = arr[2];
+//       if (i === 3) obj['category'] = arr[3];
+//       if (i === 4) obj['followers'] = Number(arr[4]);
+//       if (i === 5) obj['followings'] = Number(arr[5]);
+//     }
+//     return obj
+//   });
+
+//   return results;
+// };
+
+
+
+// const insertDataToDatabase = function () {
+//   for (var i = 0; i < 100; i++) {
+//     let values = userDataGenerator();
+//     let sql = `INSERT INTO users (display_name, logo, profile_image_url, category, followers, following) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].profile_image}', '${values[i].category}', ${values[i].followers}, ${values[i].followings}) `;
+//     connection.query(sql, function (err) {
+//       if (err) {
+//         console.log(err);
+//       }
+//     });
+//   }
+//   console.log('Records inserted');
+// }
+
+
+
+// connection.connect(function (err) {
+//   if (err) {
+//     return console.error('error ' + err.message);
+//   }
+
+//   console.log('Connected to the MySQL server. ');
+//   insertDataToDatabase();
+//   followersToDatabase();
+// });
+
+const UserDb = require('../database/Users');
 const faker = require('faker');
-// const mysql = require('mysql');
-const mongoose = require('mongoose');
-const onlineDb = require('../config/keys');
-mongoose.connect(onlineDb.mongoURI, { useNewUrlParser: true });
 
-const db = mongoose.connection;
-mongoose.Promise = global.Promise;
+faker.locale = 'en_US';
 
+//require('events').EventEmitter.prototype._maxListeners = 1000;
 
-let userDataGenerator = function () {
-  let userData = [];
-
-  for (let i = 0; i < 100; i++) {
-    let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{image.image}}, {{commerce.department}}, {{random.number}}, {{random.number}}");
-    user.trim();
-    userData.push(user.split(','));
+const seedUser = () => {
+  for(let i = 0; i < 10000; i++) {
+    // create may not work, may need to use insertMany method
+    // for larger numbers
+    UserDb.create({
+      user_id: faker.random.number(),
+      display_name: faker.internet.userName(),
+      logo: faker.image.imageUrl(),
+      profile_image_url: faker.internet.url(),
+      category: faker.company.bsAdjective(),
+      followers: faker.random.number(),
+      Following: faker.random.number(),
+    })
+    .catch(err => console.log(err));
   }
-
-  let results = userData.map(arr => {
-    let obj = {};
-    for (let i = 0; i < arr.length; i++) {
-      if (i === 0) obj['display_name'] = arr[0];
-      if (i === 1) obj['logo'] = arr[1];
-      if (i === 2) obj['profile_image'] = arr[2];
-      if (i === 3) obj['category'] = arr[3];
-      if (i === 4) obj['followers'] = Number(arr[4]);
-      if (i === 5) obj['followings'] = Number(arr[5]);
-    }
-    return obj
-  });
-
-  return results;
-};
-
-
-
-const insertDataToDatabase = function () {
-  for (var i = 0; i < 100; i++) {
-    let values = userDataGenerator();
-    let sql = `INSERT INTO users (display_name, logo, profile_image_url, category, followers, following) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].profile_image}', '${values[i].category}', ${values[i].followers}, ${values[i].followings}) `;
-    connection.query(sql, function (err) {
-      if (err) {
-        console.log(err);
-      }
-    });
-  }
-  console.log('Records inserted');
 }
 
-
-
-connection.connect(function (err) {
-  if (err) {
-    return console.error('error ' + err.message);
-  }
-
-  console.log('Connected to the MySQL server. ');
-  insertDataToDatabase();
-  followersToDatabase();
-});
-
+seedUser();

@@ -39,7 +39,7 @@ db.once('open', () => {
 });
 
 const userSchema = mongoose.Schema({
-	user_id: { type: Number, unique: true },
+	user_id: Number,
 	display_name: String,
 	logo: String,
 	profile_image_url: String,
