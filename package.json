@@ -6,11 +6,10 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "start-database": "mysql -uroot -p < database/Schema.sql",
     "seed-database": "node database/fakeData.js",
     "test": "jest"
   },
-  "author": "Milena Milano",
+  "author": "Joe Boulos",
   "license": "MIT",
   "jest": {
     "setupTestFrameworkScriptFile": "./spec/enzymeConfig.js",
@@ -37,11 +36,13 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "babel-jest": "^23.6.0",
-    "body-parser": "^1.17.0",
+    "body-parser": "^1.18.3",
     "express": "^4.15.0",
     "faker": "^4.1.0",
     "jquery": "^3.1.1",
-    "mysql": "^2.16.0",
+    "mongoose": "^5.4.9",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
     "react": "^15.6.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^15.6.2",
