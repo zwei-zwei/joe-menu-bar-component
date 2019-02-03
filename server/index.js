@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const database = require('../database');
-const port = 3000;
+const database = require('../database/index');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
