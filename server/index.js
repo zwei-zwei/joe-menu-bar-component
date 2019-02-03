@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('../database/index');
+const UserDb = require('../database/Users');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 // });
 
 app.get('/username', (req, res) => {
-  db.find({}, (err, data) => {
+  UserDb.find({}, (err, data) => {
   })
   .then((data) => {
     res.send(data);
