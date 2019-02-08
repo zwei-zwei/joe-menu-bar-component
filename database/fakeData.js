@@ -6,7 +6,7 @@ faker.locale = 'en_US';
 
 // stack overflow recommendation, node property
 require('events').EventEmitter.prototype._maxListeners = 1000;
-let count = 1;
+// let count = 1;
 
 // use async and await to load large numbers of data into db
 // use 'insertMany()' method instead of 'create' for faster load times
@@ -27,7 +27,7 @@ async function seedUser(outerLoop, innerLoop) {
       }
       arr.push(userObject);
     }
-    console.log('Seed successful', count++);
+    // console.log('Seed successful', count++);
     await UserDb.insertMany(arr);
   }
 }
