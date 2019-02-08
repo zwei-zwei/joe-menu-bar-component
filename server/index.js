@@ -1,7 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const UserDb = require('../database/Users');
+
+const faker = require('faker');
+
+faker.locale = 'en_US';
+
 
 const app = express();
 
@@ -39,6 +45,7 @@ app.post('/adduser', (req, res) => {
 })
 
 // UPDATE request
+
 
 // DELETE request
 
